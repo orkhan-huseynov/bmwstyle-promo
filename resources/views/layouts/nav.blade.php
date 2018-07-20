@@ -19,9 +19,9 @@
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                <a class="nav-link" href="/admin/tables">
+                <a class="nav-link" href="/admin/users">
                     <i class="fa fa-fw fa-table"></i>
-                    <span class="nav-link-text">Tables</span>
+                    <span class="nav-link-text">Users</span>
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
