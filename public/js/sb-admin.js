@@ -42,4 +42,29 @@
     }, 1000, 'easeInOutExpo');
     event.preventDefault();
   });
+
+    $('.delete-link').click(function(){
+        const delete_url = $(this).attr('data-url');
+        const return_url = $(this).attr('data-return-url');
+
+        if (confirm('Are you sure?')) {
+            $.ajax({
+                url: delete_url,
+                type: 'DELETE',
+                success: function(result){
+                    window.location = return_url;
+                }
+            });
+        }
+    });
+
+    $.mask.definitions['9'] = '';
+    $.mask.definitions['d'] = '[0-9]';
+    $('.maskedPhone').mask('(+994) dd ddddddd');
+    $('.maskedCarNumber').mask('dd-aa-ddd');
+
+    $('#datetimepickerDateOfBirth').datetimepicker({
+        format: 'L',
+        locale: 'ru',
+    });
 })(jQuery); // End of use strict
