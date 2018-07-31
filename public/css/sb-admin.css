@@ -480,3 +480,8 @@ footer.sticky-footer {
 .delete-link {
     color: #c32414;
 }
+
+.dataTables_filter,
+.dataTables_paginate {
+    float: right;
+}
