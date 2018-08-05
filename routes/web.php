@@ -16,6 +16,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('/admin/users/{userId}', 'UserController@update');
     Route::delete('/admin/users/{userId}', 'UserController@destroy');
 
+    Route::get('/admin/subscriptions', 'SubscriptionController@index');
+    Route::post('/admin/subscriptions', 'SubscriptionController@store');
+    Route::get('/admin/subscriptions/add', 'SubscriptionController@add');
+    Route::get('/admin/subscriptions/{subscriptionId}/edit', 'SubscriptionController@edit');
+    Route::put('/admin/subscriptions/{subscriptionId}', 'SubscriptionController@update');
+    Route::delete('/admin/subscriptions/{subscriptionId}', 'SubscriptionController@destroy');
+    Route::get('/admin/subscriptions/user/{userId}', 'SubscriptionController@index');
+
+
 
     Route::get('/admin/{demopage?}', 'DemoController@demo')->name('demo');
 });

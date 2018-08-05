@@ -23,10 +23,12 @@
                     <tr>
                         <th>#</th>
                         <th>Name, Surname, Last name</th>
+                        <th>Card number</th>
                         <th>Phone</th>
                         <th>Car Model</th>
                         <th>Car Number</th>
                         <th>VIN</th>
+
                         <th></th>
                     </tr>
                 </thead>
@@ -35,14 +37,13 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }} {{ $user->surname }} {{$user->lastname}}</td>
+                            <td>{{ $user->card_number }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->car_model }}</td>
                             <td>{{ $user->car_lic_number }}</td>
                             <td>{{ $user->car_vin }}</td>
                             <td>
-                                <a href="{{ url('/admin/users/' . $user->id . '/edit') }}"><i class="fa fa-edit"></i></a>
-                                &nbsp;|&nbsp;
-                                <a class="delete-link" href="javascript:void(0);" data-url="{{ url('/admin/users/'.$user->id) }}" data-return-url="{{ url('/admin/users') }}"><i class="fa fa-trash"></i></a>
+                                <a href="{{ url('/admin/users/' . $user->id . '/edit') }}"><i class="fa fa-pencil"></i></a>&nbsp;<a class="delete-link" href="javascript:void(0);" data-url="{{ url('/admin/users/'.$user->id) }}" data-return-url="{{ url('/admin/users') }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -66,24 +67,5 @@
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 @endsection

@@ -92,42 +92,51 @@
                                 </div>
                             </div>
                         </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-sm-12 col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label" for="inputPassword">Password</label>--}}
+                                    {{--<input type="password" name="password" class="form-control" id="inputPassword" />--}}
+                                    {{--<span class="text-danger">{{$errors->first('password')}}</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-sm-12 col-md-6">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label class="control-label" for="inputPasswordConfirmation">Confirm password</label>--}}
+                                    {{--<input type="password" name="password_confirmation" class="form-control" id="inputPasswordConfirmation" />--}}
+                                    {{--<span class="text-danger">{{$errors->first('password_confirmation')}}</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="inputPassword">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword" />
-                                    <span class="text-danger">{{$errors->first('password')}}</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="inputPasswordConfirmation">Confirm password</label>
-                                    <input type="password" name="password_confirmation" class="form-control" id="inputPasswordConfirmation" />
-                                    <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label class="control-label" for="inputCarModel">Car model</label>
                                     <input type="text" name="car_model" class="form-control" id="inputCarModel" minlength="3" required value="{{ old('car_model') }}" />
                                     <span class="text-danger">{{$errors->first('car_model')}}</span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="inputCarNumber">Car number</label>
                                     <input type="text" name="car_lic_number" class="form-control maskedCarNumber" id="inputCarNumber" minlength="9" maxlength="9" required value="{{ old('car_lic_number') }}" />
                                     <span class="text-danger">{{$errors->first('car_lic_number')}}</span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="inputCarNumber">Car VIN</label>
+                                    <label class="control-label" for="inputCarVin">Car VIN</label>
                                     <input type="text" name="car_vin" class="form-control" id="inputCarVin" minlength="7" maxlength="7" required value="{{ old('car_vin') }}" />
                                     <span class="text-danger">{{$errors->first('car_vin')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="inputCardNumber">Card Number</label>
+                                    <input type="text" name="card_number" class="form-control" id="inputCardNumber" minlength="1" maxlength="10" required value="{{ old('card_number') }}" />
+                                    <span class="text-danger">{{$errors->first('card_number')}}</span>
                                 </div>
                             </div>
                         </div>
@@ -155,24 +164,5 @@
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fa fa-angle-up"></i>
         </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

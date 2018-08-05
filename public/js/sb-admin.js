@@ -58,8 +58,12 @@
             $.ajax({
                 url: delete_url,
                 type: 'DELETE',
-                success: function(result){
-                    window.location = return_url;
+                success: function(result) {
+                    if (result.responseCode === 1) {
+                        window.location = return_url;
+                    } else {
+                        alert(result.responseMessage);
+                    }
                 }
             });
         }
@@ -73,5 +77,16 @@
     $('#datetimepickerDateOfBirth').datetimepicker({
         format: 'L',
         locale: 'ru',
+    });
+
+    $('#datetimepickerPeriod').datetimepicker({
+        format: 'MM/YYYY',
+        viewMode: 'months',
+        ignoreReadonly: true,
+    });
+
+    $('#filterUser').on('change', function () {
+        const filterUserId = $('#filterUser').val();
+        location.href = `http://promo.bmwstyle.az/admin/subscriptions/user/${filterUserId}`;
     });
 })(jQuery); // End of use strict

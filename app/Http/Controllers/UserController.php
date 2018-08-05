@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Response;
 use Image;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -43,10 +43,16 @@ class UserController extends Controller
             'phone' => 'required|min:17|max:17',
             'fin' => 'min:7|max:7',
             'date_of_birth' => 'required|date|min:10|max:10',
-            'password' => 'confirmed',
+            //'password' => 'confirmed',
             'car_model' => 'required|min:3',
             'car_lic_number' => 'required|min:9|max:9',
             'car_vin' => 'required|min:7|max:7',
+            'card_number' => [
+                'required',
+                'min:1',
+                'max:10',
+                Rule::unique('users')->ignore($userId),
+            ],
         ]);
 
         if ($request->hasFile('photo')) {
@@ -67,10 +73,11 @@ class UserController extends Controller
         $user->car_model = $request->car_model;
         $user->car_lic_number = $request->car_lic_number;
         $user->car_vin = $request->car_vin;
+        $user->card_number = $request->card_number;
 
-        if ($request->has('password')) {
-            $user->password = bcrypt($request->password);
-        }
+//        if ($request->has('password')) {
+//            $user->password = bcrypt($request->password);
+//        }
 
         $user->save();
 
@@ -83,14 +90,15 @@ class UserController extends Controller
             'name' => 'required|min:3|max:255',
             'surname' => 'required|min:3|max:255',
             'lastname' => 'required|min:3|max:255',
-            'email' => 'required|email|min:3|max:255',
+            'email' => 'required|email|min:3|max:255|unique:users',
             'phone' => 'required|min:17|max:17',
             'fin' => 'min:7|max:7',
             'date_of_birth' => 'required|date|min:10|max:10',
-            'password' => 'confirmed',
+            //'password' => 'confirmed',
             'car_model' => 'required|min:3',
             'car_lic_number' => 'required|min:9|max:9',
             'car_vin' => 'required|min:7|max:7',
+            'card_number' => 'required|min:1|max:10|unique:users',
         ]);
 
         $user = new User();
@@ -114,11 +122,13 @@ class UserController extends Controller
         $user->car_model = $request->car_model;
         $user->car_lic_number = $request->car_lic_number;
         $user->car_vin = $request->car_vin;
+        $user->card_number = $request->card_number;
         $user->group_id = 10;
 
-        if ($request->has('password')) {
-            $user->password = bcrypt($request->password);
-        }
+//        if ($request->has('password')) {
+//            $user->password = bcrypt($request->password);
+//        }
+        $user->password = bcrypt('78612UYTfbhdh([$nkjn');
 
         $user->save();
 
@@ -128,9 +138,17 @@ class UserController extends Controller
     function destroy(int $userId)
     {
         $user = User::findOrFail($userId);
+
+        if ($user->subscriptions->count() > 0) {
+            return response()->json([
+                'responseCode' => 2,
+                'responseMessage' => 'Error deleting user. User has active subscriptions',
+            ]);
+        }
+
         $user->delete();
 
-        return Response::json([
+        return response()->json([
             'responseCode' => 1,
             'responseMessage' => 'ok',
         ]);

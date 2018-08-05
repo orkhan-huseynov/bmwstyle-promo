@@ -24,6 +24,12 @@
                     <span class="nav-link-text">Users</span>
                 </a>
             </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                <a class="nav-link" href="/admin/subscriptions">
+                    <i class="fa fa-fw fa-book"></i>
+                    <span class="nav-link-text">Subscriptions</span>
+                </a>
+            </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-wrench"></i>

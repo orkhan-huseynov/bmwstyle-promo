@@ -30,4 +30,8 @@ class User extends Authenticatable
     protected  $dates = [
         'date_of_birth', 'created_at', 'updated_at',
     ];
+
+    public function subscriptions() {
+        return $this->hasMany('App\Subscription');
+    }
 }

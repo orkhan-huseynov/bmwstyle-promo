@@ -485,3 +485,7 @@ footer.sticky-footer {
 .dataTables_paginate {
     float: right;
 }
+
+.table-filters {
+    margin-bottom: 1em;
+}
