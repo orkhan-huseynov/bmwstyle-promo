@@ -42,7 +42,7 @@
                             <td>{{ $user->car_model }}</td>
                             <td>{{ $user->car_lic_number }}</td>
                             <td>{{ $user->car_vin }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{ url('/admin/users/' . $user->id . '/edit') }}"><i class="fa fa-pencil"></i></a>&nbsp;<a class="delete-link" href="javascript:void(0);" data-url="{{ url('/admin/users/'.$user->id) }}" data-return-url="{{ url('/admin/users') }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>

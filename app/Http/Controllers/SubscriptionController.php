@@ -12,9 +12,9 @@ class SubscriptionController extends Controller
     public function index(int $userId = 0)
     {
         if ($userId > 0) {
-            $subscriptions = Subscription::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+            $subscriptions = Subscription::where('user_id', $userId)->orderBy('period_start', 'asc')->get();
         } else {
-            $subscriptions = Subscription::orderBy('created_at', 'desc')->get();
+            $subscriptions = Subscription::orderBy('period_start', 'asc')->get();
         }
 
         $lastUpdate = (count($subscriptions) > 0)? $subscriptions->last()->updated_at->format('d.m.Y H:i') : null;
@@ -119,6 +119,20 @@ class SubscriptionController extends Controller
         return response()->json([
             'responseCode' => 1,
             'responseMessage' => 'ok',
+        ]);
+    }
+
+    function subscriptionsReport()
+    {
+        $groupedData = Subscription::get()->groupBy(function ($d) {
+           return $d->period_start->format('n');
+        })->map(function ($value) {
+            return $value->count();
+        });
+
+        return response()->json([
+            'responseCode' => 1,
+            'responseMessage' => $groupedData,
         ]);
     }
 }

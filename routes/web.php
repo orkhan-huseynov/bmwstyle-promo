@@ -6,9 +6,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+
+    Route::get('/admin', 'HomeController@index');
+
     Route::get('/admin/users', 'UserController@index');
     Route::post('/admin/users', 'UserController@store');
     Route::get('/admin/users/add', 'UserController@add');
@@ -26,5 +29,5 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 
-    Route::get('/admin/{demopage?}', 'DemoController@demo')->name('demo');
+    //Route::get('/admin/{demopage?}', 'DemoController@demo')->name('demo');
 });

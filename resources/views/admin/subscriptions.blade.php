@@ -50,7 +50,7 @@
                             <td>{{ $subscription->period_start->format('d.m.Y') }} - {{ $subscription->period_end->format('d.m.Y') }}</td>
                             <td>@if($subscription->is_vip) <i class="fa fa-check"></i> @endif</td>
                             <td>@if($subscription->is_active) <i class="fa fa-check"></i> @endif</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{ url('/admin/subscriptions/' . $subscription->id . '/edit') }}"><i class="fa fa-pencil"></i></a>
                                 &nbsp;|&nbsp;
                                 <a class="delete-link" href="javascript:void(0);" data-url="{{ url('/admin/subscriptions/'.$subscription->id) }}" data-return-url="{{ url('/admin/subscriptions') }}"><i class="fa fa-trash"></i></a>

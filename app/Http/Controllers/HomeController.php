@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Subscription;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $usersCount = User::all()->count();
+        $subscriptions = Subscription::all();
+        $subscriptionsCount = $subscriptions->count();
+        $lastUpdate = ($subscriptionsCount > 0)? $subscriptions->last()->updated_at->format('d.m.Y H:i') : null;
+        return view('admin/index', [
+            'usersCount' => $usersCount,
+            'subscriptionsCount' => $subscriptionsCount,
+            'lastUpdate' => $lastUpdate,
+        ]);
     }
 }
