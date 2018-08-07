@@ -4,6 +4,8 @@ Route::get('/', function () {
     return redirect('admin');
 });
 
+Route::get('/checkCardNumber', 'SubscriptionController@checkCardNumber');
+
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

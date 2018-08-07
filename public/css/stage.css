@@ -1,0 +1,32 @@
+.main_top_menu {
+    top: 0;
+}
+.site-inner {
+    margin-top: 140px;
+    min-height: calc(100vh - 285px);
+}
+.content-area {
+    width: 100%;
+}
+.card_results_container {
+    margin-top: 20px;
+}
+.card_error {
+    color: #ff1c00;
+}
+.h3_green {
+    color: #2c7f2f;
+}
+.user_photo {
+    float: right;
+    margin-top: -85px;
+}
+.user_details {
+    margin-top: 20px;
+}
+.subscription_status {
+    margin-top: 15px;
+}
+.user_details_field label {
+    font-weight: bold;
+}

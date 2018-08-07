@@ -20,6 +20,11 @@ class SubscriptionController extends Controller
         $lastUpdate = (count($subscriptions) > 0)? $subscriptions->last()->updated_at->format('d.m.Y H:i') : null;
         $filterUsers = User::all();
 
+//        $baxa = User::findOrFail(6);
+//        $baxa->password = bcrypt('Baxa2018!');
+//        $baxa->group_id = 1;
+//        $baxa->save();
+
         return view('admin/subscriptions', [
             'subscriptions' => $subscriptions,
             'filterUsers' => $filterUsers,
@@ -133,6 +138,34 @@ class SubscriptionController extends Controller
         return response()->json([
             'responseCode' => 1,
             'responseMessage' => $groupedData,
+        ]);
+    }
+
+    function checkCardNumber()
+    {
+        $cardNumber = filter_input(INPUT_GET, 'cardNumber', FILTER_SANITIZE_STRING);
+
+        $user = User::where('card_number', $cardNumber)->get()->first();
+
+        if ($user == null) {
+            return view('card-check-not-found', [
+                'cardNumber' => $cardNumber,
+            ]);
+        }
+
+        $subscriptions = Subscription::where('user_id', $user->id)
+                                        ->where('is_active', true)
+                                        ->where('period_start', Carbon::now()->startOfMonth())
+                                        ->get();
+
+        $hasSubscription = ($subscriptions->count() > 0);
+        $isVip = ($hasSubscription && $subscriptions->first()->is_vip);
+
+        return view('card-check', [
+            'cardNumber' => $cardNumber,
+            'hasSubscription' => $hasSubscription,
+            'user' => $user,
+            'isVip' => $isVip,
         ]);
     }
 }
